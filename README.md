@@ -1,5 +1,5 @@
-# voyage-project-surgerystatus
-Chingu Voyage Project - Surgery Center Status Board
+# voyage-project-pr-status
+Chingu Voyage Project - GitHub PR Review Status Board
 
 ## Table of Contents
 
@@ -13,30 +13,29 @@ Chingu Voyage Project - Surgery Center Status Board
 
 Welcome, Chingus!
 
-It's inevitable that at some point in your life you or a loved one will have to undergo
-some type of surgery - either as an inpatient or an outpatient. In this event you or a
-companion, depending on who's having the surgery, will be in a hospital waiting room while
-the surgery is being performed.
+Something all project teams seem to struggle with is getting their GitHub Pull Requests (PRs)
+reviewed in a timely manner. Few things hold up team progress more than having changes
+queued up waiting on other team members to review them.
 
-It can be quite stressful on the person in the waiting room. But, this can be lessened by
-knowing how the surgery is progressing. Like many other activities there is a workflow
-associated with any medical procedure and knowing what state or phase the surgery is in 
-will help whoever is waiting to know what's going on.
+Wouldn't it be helpful if teams had a PR status board customized to their team to help them
+track not only PR's that are waiting review, but also PR's that have been completed? Yes, 
+GitHub provides this, but it is very basic and teams need all the information they can get.
 
-In this voyage, your team will design and build a web application, _Surgery Status Board_,
-that will track a patients progress and display it on a monitor in the waiting room.
+In this voyage, your team will design and build a web application, the _PR Status Board_,
+to track current PR's waiting review as well as the history of PR's completed by the team.
 
-Your objective is to create an application that allows surgery center personnel to collect
-patient information and track the progress of their surgery. This will be displayed in
-the surgical waiting room so loved ones can track patient progress.
+Your objective is to create an application that will utilize GitHub's REST API to retrieve
+current and historical PR status for the PR's created on your team repos. We'll provide you
+with instructions on how to create a read-only API key so you will be able to access this 
+information, as well as sample code to demonstrate how to retrieve this data through GitHub's
+API.
 
-An optional goal is to use the free tier of the
-[Google Gemini API](https://ai.google.dev/api?lang=node) to implement an interactive AI
-agent into the app to allow users to get help information. This means you will need to add 
-_context_ about this app in your API calls. You can find simplified example of how to do
-this in the `src` directory of this repo.
+Since GitHub's API is _rate limited_ the first feature you implement must be to retrieve and
+save the data returned so you can replay it to test your app, without having to access it
+through the API while you are testing.
 
-Surgery Status Board will help you build new _soft skills_ and refine your current role-based skills. It will also let you build new skills and experience using AI.
+The _PR Status Board_ will help you build new _soft skills_ and refine your current role-based skills. It will also let you build new skills and experience using AI - but, more on this
+below.
 
 ## General Instructions
 
@@ -54,14 +53,19 @@ the power of teamwork to make it distinctive and unique.
 Remember, UI/UX creativity is yours to explore—design an interface that stands
 out while ensuring ease of use.
 
-Also, there is no need to purchase any subscriptions or software for this project. The 
+Also, there is no need to purchase any subscriptions or software for this project. 
+
+* The [GitHub API](https://docs.github.com/en/rest?apiVersion=2022-11-28) should be used
+to access information about your team, repo(s) and PR's. It is free to use, but someone
+on your team will need to [create a GitHub personal access token](./src/assets/GH_personal_access_token_options.png) in order to use it. 
+* The 
 [Gemini Flash 1.5 free tier](https://ai.google.dev/pricing#1_5flash) is sufficent for the
 AI part of the project and there are many 
 [web hosting services](https://github.com/chingu-voyages/Handbook/blob/main/docs/resources/techresources/appdeployment.md) 
 with free tiers you can use to deploy your app.
 
-We have added a sample React app to the `src` directory of this repo you can
-use to see how to call the Gemini API.
+We have added a sample React apps to the `src` directory of this repo so you can
+see how to call both of these API's.
 
 ## Requirements and Specifications
 
@@ -87,8 +91,7 @@ your app once you complete these basic requirements.
 
 * Application Overview
 
-  * [ ] Develop an application to help surgical center staff track patients and to allow 
-  individuals waiting on a patient to see their status.
+  * [ ] Develop an application to help your team 
   * [ ] Ensure the application is user-friendly, accessible, and visually appealing.
   * Each page should contain these components:
     * [ ] A _header_ containing the name of the app, the current date, and navigation options
