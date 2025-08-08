@@ -91,7 +91,8 @@ your app once you complete these basic requirements.
 
 * Application Overview
 
-  * [ ] Develop an application to help your team 
+  * [ ] Develop an application to help your team track the status of open Pull Requests in GitHub
+  and closed (historical) ones in GitHub
   * [ ] Ensure the application is user-friendly, accessible, and visually appealing.
   * Each page should contain these components:
     * [ ] A _header_ containing the name of the app, the current date, and navigation options
@@ -107,9 +108,8 @@ your app once you complete these basic requirements.
 * Navigation options
 
   * [ ] **Home** - displays the landing page when clicked
-  * [ ] **Patient Information** - allows an administrator to add new patient data and start the workflow
-  * [ ] **Patient Status Update** - allows a member of the surgical team to update a patients status
-  * [ ] **Patient Status** - displays a screen showing the status of all surgical patients
+  * [ ] **Open PRs** - display a list of open PRs
+  * [ ] **Closed PRs** - display a list of all closed PR's with the same information as
 
 * Screens
 
@@ -118,111 +118,65 @@ your app once you complete these basic requirements.
     ![Landing Page Wireframe](./src/assets/Landing_Page_Wireframe.jpg)
 
     * [ ] Content that advertises the purpose of the app and it's benefits
-    * [ ] A _login form_ users can use to authenticate themselves
-    
-    There are three distinct user roles your application should authenticate - _Guests_, 
-    _Admins_, and _Surgical Team Members_.
 
-    _Guest_ is a generic id used by any generic user. Guests are only allowed to see the Patient 
-    Status Display Screen (see below). Guests don't have specific user id's this is the default 
-    user type and a login isn't required for it.
+    No user authentication is required for this app since it operates against only public
+    repos.
 
-    _Admins_ & _Surgical Team Members_ are required to login and be authenticated. _Admins_ 
-    should have access to all application functionality. _Surgical Team Members_ may access
-    all application functionality, **except** the Patient Information Screen.
+  * Open PRs Screen
 
-    For simplicity your application doesn't need to implement a user registration screen.
-    Instead, you may maintain a static (i.e. hard-coded) list of _Admins_ and _Surgical Team
-    Members_ to be used by your authentication process.
+    This screen allows users to display a summary of all open PR's on their team repo(s).
+    Your app should allow the user to select which specific repo this information should
+    be extracted from.
 
-  * Patient Information Screen
+    In addition, your app should also give the user the option to save the JSON returned
+    from the GitHub API so it can be used for testing. This will allow you to continue
+    development and testing even if GitHub API rate limits are reached.
 
-    ![Patient Info Wireframe](./src/assets/Patient_Info_Wireframe.jpg)
+    The data to be displayed for each PR includes:
+    * [ ] Unique number assigned by GitHub to the PR
+    * [ ] The title of the PR. When clicked a new browser tab should be opened to display the
+    PR within GitHub.
+    * [ ] Account name of the teammate who created it
+    * [ ] Date it was created
+    * [ ] Account names of teammates assigned to review it.
+    * [ ] Last action - created, commented, or change requested
+    * [ ] Date of the last action
 
-    This screen allows authenticated _Admin_ users to add a new patient or update an existing patient data. 
+  * Closed PRs Screen
 
-    The data to be collected for each patient includes:
-    * [ ] Patient number (see below)
-    * [ ] First name
-    * [ ] Last name
-    * [ ] Street address
-    * [ ] City
-    * [ ] State, province, or region depending on the surgical centers geographic location
-    * [ ] Country
-    * [ ] Telephone number
-    * [ ] Contact Email address (the address of the person waiting for them)
+    This screen allows users to display a summary of all PR's that have been closed or
+    rejected on their team repo(s). Your app should allow the user to select which 
+    specific repo this information should be extracted from.
 
-    When adding a new patient your app should also generate a unique identification for the
-    patient - the _patient number_. This must be exactily six characters containing any combination of letters or numbers. It must **NOT** contain any part of the patients nane, address, phone number or any other personal identifying information.
+    In addition, your app should also give the user the option to save the JSON returned
+    from the GitHub API so it can be used for testing. This will allow you to continue
+    development and testing even if GitHub API rate limits are reached.
 
-    The starting status to be assigned to new patients is `Checked In`.
+    The data to be displayed for each PR includes:
+    * [ ] Unique number assigned by GitHub to the PR
+    * [ ] The title of the PR. When clicked a new browser tab should be opened to display the
+    PR within GitHub.
+    * [ ] Account name of the teammate who created it
+    * [ ] Date it was created
+    * [ ] Account names of teammates assigned to review it.
+    * [ ] Date it was closed    
 
-    _Admins_ are allowed to update any of this information except the persons patient number.
+* Optional - Filter option on both the open and closed PRs screens to allow users to only
+display
 
-  * Patient Status Update Screen
-
-    ![Patient Status Update Wireframe](./src/assets/Patient_Status_Update_Wireframe.jpg)
-
-    This screen allows authenticated _Admins_ or _Surgical Team Members_ to update a patients status. 
-
-    * To update a status
-      * [ ] An authenticated user must enter the patient number to display the patients first name, last name, address, city, state, telephone number, and current status
-      * [ ] To update the current status the user will use a dropdown to choose from either the prior or the next status
-    * [ ] Statuses may not be skipped.
-    * [ ] Statuses may be reversed, but only to the prior status.
-    * [ ] There is no minimum amount of time between changes in status.
-
-  * Patient Status Display Screen
-
-    ![Patient Status Display Wireframe](./src/assets/Patient_Status_Display_Wireframe.jpg)
-
-    This screen allows staff as well as individuals in the waiting room to monitor patients'
-    progress. 
-
-    Statuses are pre-defined as:
-
-    * **Checked In**: In the facility awaiting their procedure.
-    * **Pre-Procedure**: Undergoing surgical preparation.
-    * **In-progress**: Surgical procedure is underway.
-    * **Closing**: Surgery comnpleted. 
-    * **Recovery**: Patient transferred to post-surgery recovery room.
-    * **Complete**: Recovery completed. Patient awaiting dismissal.
-    * **Dismissal**: Transferred to a hospital room for an overnight stay or for outpatient procedures the patient has left the hospital.
-
-    You can find a sample of how you might encode these as a JSON file in [`src/assets/status.json`](./src/assets/status.json).
-
-    Each status should be assigned a unique color of your choice. 
-
-    This screen should display **only** the following information:
-
-    * [ ] Patient number
-    * [ ] Current status. The background color should be the one your team has chosen for each status
-
-    Patients are added to this screen when the addition of their patient information is complete (i.e. `Checked In`) and removed when their status changes to `Dismissed`. 
-
-    The display is updated when a patients status changes. For FE-only apps the update will
-    happen when the user presses a `Refresh` button. For full stack apps the update will
-    take place when the status is updated in the BE.
-
-    If there are more patients than will fit on a screen it should automatically cycle through 
-    the pages, displaying a new page every 20 seconds.
-
-* Optional - Search Input Form in the Patient Information and Patient Status Update screens
-
-  * [ ] The form must include input fields to allow users to search for patients by last name.
-  * [ ] The form should include a button to submit the search request.
-  * [ ] The form should include a button to clear the contents of the search fields. 
-  * [ ] The user must be allowed to update any search fields between submissions.
-  
-* Search Results Area
-
-  * [ ] When the user clickes the submit button the Search Results Area should be updated with a list of the patients matching the search criteria.
-  * [ ] It is valid for the user to enter any combination of search fields or none at all to retrieve all resources.
-  * [ ] When the clear button is clicked in the search input form any results from a prior query should be cleared 
+  * [ ] The form must include input fields to allow users to filter by GitHub user names.
+  * [ ] The form should include a button to submit the filter request.
+  * [ ] The form should include a button to clear the contents of the filter fields. 
+  * [ ] The user must be allowed to update any filter fields between submissions.
+  * [ ] When the user clicks the submit button the displayed results should be updated 
+  based on the filter criteria.
+  * [ ] It is valid for the user to enter any combination of filter fields or none at all.
+  * [ ] When the clear button is clicked in the filter form any results from a prior query 
+  should be refreshed to include all PRs. 
 
 * Optional - AI Chat Icon
 
-  * [ ] When clicked, display a popup dialog to allow the user to chat with the AI about this application. This conversation is intended to replace traditional documentation. Instead, it let's the user ask questions like "What tags can I search for?" and "How can I scroll through the results?".
+  * [ ] When clicked, display a popup dialog to allow the user to chat with the AI about this application. This conversation is intended to replace traditional documentation. Instead, it let's the user ask questions like "How can I filter results?" and "How do I specify which repo is to be used?".
   * [ ] The popup dialog has three components to support this:
 
       ![AI Chat Dialog](./src/assets/AI_Chat_Dialog_Wireframe.jpg)
@@ -262,11 +216,11 @@ match the capabilities of your tier.
 Although this is and optional requirement, we strongly suggest Tier 2 & Tier 3
 teams attempt this. 
 
-* [ ] Enhance the search capability by allowing any or all of the following: 
-  - Allow the user to specify partial addresses
-  - Allow the user to search by telephone number
+* [ ] Enhance results filtering to allow the user to specify additional constraints
+on the results to be displayed. 
 
-* [ ] Personalize the application by including the authenticated _Admin_ or _Surgical Team Member's name and in any messages.
+* [ ] Allow the user to sort results by clicking on column headings or icons 
+adjacent to them.
 
 * [ ] Implement full-stack application that makes the calls to the Gemini API
 via a BE route. Frontend and backend are required.
@@ -276,7 +230,10 @@ via a BE route. Frontend and backend are required.
   * [Google Authentication](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid)
   A detailed guide on how to obtain an API key and perform Google Authentication.
 
-* [ ] Add functionality to email patient status changes to their email address.the results to Check out [EmailJS](https://www.emailjs.com/docs) for how you might email them.
+* [ ] Add functionality to email PR review reminders. This will require your
+app to maintain a list of team member GitHub account names and email addresses
+since user email addresses are not exposed in the GitHub API. Check out 
+[EmailJS](https://www.emailjs.com/docs) for how you might email them.
 
 * [ ] Surprise us with any features you would like to add to this app! Brainstorm
 with your teammates to see what you can come up with.
