@@ -1,4 +1,4 @@
-import Prompt from './components/Prompt.jsx'
+import SelectFunction from './components/SelectFunction.jsx'
 import './App.css'
 
 function App() {
@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <main className='content'>
-        <Prompt/>
+        <SelectFunction />
       </main>
     </div>
   )
