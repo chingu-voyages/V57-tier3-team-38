@@ -27,8 +27,7 @@ to track current PR's waiting review as well as the history of PR's completed by
 Your objective is to create an application that will utilize GitHub's REST API to retrieve
 current and historical PR status for the PR's created on your team repos. We'll provide you
 with instructions on how to create a read-only API key so you will be able to access this 
-information, as well as sample code to demonstrate how to retrieve this data through GitHub's
-API.
+information, as well as [sample code](https://github.com/chingu-voyages/voyage-project-pr-status/tree/main/src) to demonstrate how to retrieve this data through GitHub's API.
 
 Since GitHub's API is _rate limited_ the first feature you implement must be to retrieve and
 save the data returned so you can replay it to test your app, without having to access it
