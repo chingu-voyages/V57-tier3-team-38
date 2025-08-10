@@ -32,7 +32,12 @@ body {
   grid-auto-flow: column;
   width: 100%;
   grid-template-columns: 50% 50%;
-  align-items: center;
+  align-items: left;
+}
+
+.code-text {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.2rem;
 }
 
 .row {
@@ -43,6 +48,10 @@ body {
 .block {
   width: 100px;
   display: flex;
+}
+
+.justify-left {
+  text-align: left;
 }
 
 .justify-right {
