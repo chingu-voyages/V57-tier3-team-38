@@ -58,7 +58,7 @@ Also, there is no need to purchase any subscriptions or software for this projec
 to access information about your team, repo(s) and PR's. It is free to use, but someone
 on your team will need to [create a GitHub personal access token](./src/assets/GH_personal_access_token_options.png) in order to use it. 
 * The 
-[Gemini Flash 1.5 free tier](https://ai.google.dev/pricing#1_5flash) is sufficent for the
+[Gemini Flash 1.5 free tier](https://ai.google.dev/pricing#1_5flash) is sufficient for the
 AI part of the project and there are many 
 [web hosting services](https://github.com/chingu-voyages/Handbook/blob/main/docs/resources/techresources/appdeployment.md) 
 with free tiers you can use to deploy your app.
@@ -212,7 +212,7 @@ following _optional_ stretch goals. Make sure that any of these you choose
 match the capabilities of your tier.
 
 * [ ] Add an AI chatbot users can utilize to get help using the application.
-Although this is and optional requirement, we strongly suggest Tier 2 & Tier 3
+Although this is an optional requirement, we strongly suggest Tier 2 & Tier 3
 teams attempt this. 
 
 * [ ] Enhance results filtering to allow the user to specify additional constraints
@@ -224,7 +224,7 @@ adjacent to them.
 * [ ] Implement full-stack application that makes the calls to the Gemini API
 via a BE route. Frontend and backend are required.
 
-* [ ] Authenticate users via Google or GitHub OAuth to increase the security of your app.
+* [ ] Authenticate users via Google or GitHub to increase the security of your app.
   * [Github Authentication](https://www.npmjs.com/package/oauth-client-github)
   * [Google Authentication](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid)
   A detailed guide on how to obtain an API key and perform Google Authentication.
@@ -261,6 +261,6 @@ milestones. Thank you.
 ## About Chingu
 
 If you aren't yet a member of Chingu we invite you to [join us](https://chingu.io).
-We help ourmembers transform what they've learned in courses & tutorials into the
+We help our members transform what they've learned in courses & tutorials into the
 practical experience employers need and want. The experience that helps to set you
 apart from other applicants for the same jobs.
