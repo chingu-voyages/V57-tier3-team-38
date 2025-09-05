@@ -86,7 +86,7 @@ Also, there is no need to purchase any subscriptions or software for this projec
 
 * The [GitHub API](https://docs.github.com/en/rest?apiVersion=2022-11-28) should be used
 to access information about your team, repo(s) and PR's. It is free to use, but someone
-on your team will need to [create a GitHub personal access token](./src/assets/GH_personal_access_token_options.png) in order to use it. 
+on your team will need to [create a GitHub personal access token](./client/src/assets/GH_personal_access_token_options.png) in order to use it. 
 * The 
 [Gemini Flash 1.5 free tier](https://ai.google.dev/pricing#1_5flash) is sufficient for the
 AI part of the project and there are many 
