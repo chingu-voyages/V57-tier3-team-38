@@ -8,6 +8,7 @@ Chingu Voyage Project - GitHub PR Review Status Board
 * [Overview](#overview)
 * [General Instructions](#general-instructions)
 * [Requirements & Specifications](#requirements-and-specifications)
+* [Contributing](#contributing)
 * [Acknowledgements](#acknowledgements)
 * [About Chingu](#about-chingu)
 
@@ -293,3 +294,8 @@ If you aren't yet a member of Chingu we invite you to [join us](https://chingu.i
 We help our members transform what they've learned in courses & tutorials into the
 practical experience employers need and want. The experience that helps to set you
 apart from other applicants for the same jobs.
+
+## Contributing
+
+We welcome contributions from all team members!  
+Please read our [Contributing Guidelines](CONTRIBUTING.md) to get started.
