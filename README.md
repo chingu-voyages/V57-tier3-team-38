@@ -3,11 +3,40 @@ Chingu Voyage Project - GitHub PR Review Status Board
 
 ## Table of Contents
 
+* [Team Documents](#team-documents)
+* [Our Team](#our-team)
 * [Overview](#overview)
 * [General Instructions](#general-instructions)
 * [Requirements & Specifications](#requirements-and-specifications)
 * [Acknowledgements](#acknowledgements)
 * [About Chingu](#about-chingu)
+
+## Team Documents
+
+You may find these helpful as you work together to organize your project.
+
+- [Team Project Ideas](./docs/team_project_ideas.md)
+- [Team Decision Log](./docs/team_decision_log.md)
+
+Meeting Agenda templates (located in the `/docs` directory in this repo):
+
+- Meeting - Voyage Kickoff --> ./docs/meeting-voyage_kickoff.docx
+- Meeting - App Vision & Feature Planning --> ./docs/meeting-vision_and_feature_planning.docx
+- Meeting - Sprint Retrospective, Review, and Planning --> ./docs/meeting-sprint_retrospective_review_and_planning.docx
+- Meeting - Sprint Open Topic Session --> ./docs/meeting-sprint_open_topic_session.docx
+
+## Our Team
+
+Everyone on your team should add their name along with a link to their GitHub
+& optionally their LinkedIn profiles below. Do this in Sprint #1 to validate
+your repo access and to practice PR'ing with your team *before* you start
+coding!
+
+- Teammate name #1: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Teammate name #2: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+
+   ...
+- Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
 
 ## Overview
 
