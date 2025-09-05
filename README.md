@@ -128,7 +128,7 @@ your app once you complete these basic requirements.
     * [ ] A _footer_ that links to your GitHub repo and a list of who is on the team.
     * [ ] Optionally, a _chat icon_ that will display a popup when clicked to allow the user to ask for help from the AI agent you build into the app.
 
-    ![Common Elements Wireframe](./src/assets/Common_Elements_Wireframe.jpg)
+    ![Common Elements Wireframe](./client/src/assets/Common_Elements_Wireframe.jpg)
 
     But, this wireframe doesn't provide many specifics! That's correct! Your
     task is to design your app from the detailed specifications we provide and
@@ -144,7 +144,7 @@ your app once you complete these basic requirements.
 
   * Home Screen
 
-    ![Landing Page Wireframe](./src/assets/Landing_Page_Wireframe.jpg)
+    ![Landing Page Wireframe](./client/src/assets/Landing_Page_Wireframe.jpg)
 
     * [ ] Content that advertises the purpose of the app and it's benefits
 
@@ -208,7 +208,7 @@ display
   * [ ] When clicked, display a popup dialog to allow the user to chat with the AI about this application. This conversation is intended to replace traditional documentation. Instead, it let's the user ask questions like "How can I filter results?" and "How do I specify which repo is to be used?".
   * [ ] The popup dialog has three components to support this:
 
-      ![AI Chat Dialog](./src/assets/AI_Chat_Dialog_Wireframe.jpg)
+      ![AI Chat Dialog](./client/src/assets/AI_Chat_Dialog_Wireframe.jpg)
 
     - A conversion display area that contains a infinite scroll containing the questions the user asked followed by the response from the AI.
     - An input field where the user may enter their question
