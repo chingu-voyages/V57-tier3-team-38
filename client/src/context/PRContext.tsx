@@ -6,6 +6,8 @@ import type { PRItem, PRState } from "@/types/pr";
 import { apiFetch } from "@/utils/api";
 
 type PRContextValue = PRState & {
+  items: PRItem[];
+  total: number;
   setRepo: (repo: string | null) => void;
   setUser: (user: string | null) => void;
   clearFilters: () => void;
