@@ -2,7 +2,6 @@
 import type { AuthState, AuthAction } from "@/types/auth";
 
 export const initialAuthState: AuthState = {
-  // With cookie-based auth, we start unauthenticated and flip true after /auth/me succeeds
   isAuthenticated: false,
   tokens: { access: null, refresh: null }, // kept for compatibility; fine to ignore with cookies
   user: null,

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useMemo, useReducer } from "react";
-import { authReducer, initialAuthState } from "@/reducers/authReducer";
+import { authReducer, initialAuthState } from "@/reducer/authReducer";
 import type { AuthState, AuthAction, User } from "@/types/auth";
 import { fetchMe, login as apiLogin } from "@/utils/auth";
 
@@ -14,19 +14,16 @@ type AuthContextValue = AuthState & {
 const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [state, dispatch] = useReducer<React.Reducer<AuthState, AuthAction>>(
-    authReducer,
-    initialAuthState
-  );
+  // Let TS infer from the typed reducer; avoids the “Expected 2 type arguments” error
+  const [state, dispatch] = useReducer(authReducer, initialAuthState);
 
   const login = async (username: string, password: string) => {
-    const tokens = await apiLogin({ username, password });
-    // tokens are likely set via cookies on the server; if you store anything locally, do it here
+    await apiLogin({ username, password });
     await hydrateUser();
   };
 
   const logout = () => {
-    // optional: call /auth/logout then clear any local state if you store tokens
+    // call /auth/logout if your server has it, then:
     dispatch({ type: "LOGOUT" });
   };
 
@@ -39,7 +36,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const value = useMemo(
+  // IMPORTANT: include the state fields in the context value
+  const value: AuthContextValue = useMemo(
     () => ({ ...state, login, logout, hydrateUser }),
     [state]
   );
@@ -48,4 +46,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useAuth() {
-  const ctx = useContext(Au
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error("useAuth must be used within AuthProvider");
+  return ctx;
+}
