@@ -12,7 +12,7 @@ export interface PRItem {
 }
 
 export interface PRFilters {
-  repo: string | null;       // e.g. "owner/repo"
+  repo: string | null;       // owner/repo
   user: string | null;       // filter by author/reviewer login
 }
 
