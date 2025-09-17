@@ -36,8 +36,8 @@ coding!
 - Eoin McDonnell: [GitHub](https://github.com/oldmcdonnell) / [LinkedIn](https://www.linkedin.com/in/mcdonnell-eoin)
 - Marissa Lamothe: [GitHub](https://github.com/msrissaxox) / [LinkedIn](https://www.linkedin.com/in/marissalamothe/)
 - Spandan Mahat : [GitHub](https://github.com/spandanmahat00) / [LinkedIn](https://linkedin.com/in/spandan-mahat-078662266)
+- Trevor Topolski : [GitHub](https://github.com/Trevor-04) / [LinkedIn](https://linkedin.com/in/trevortopolski)
 
-   ...
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
 
 ## Overview
