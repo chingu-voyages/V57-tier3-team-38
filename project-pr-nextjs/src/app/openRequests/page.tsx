@@ -11,6 +11,7 @@ const mockPRs: PullRequest[] = [
     author: "sarah-dev",
     createdAt: "2 days ago",
     updatedAt: "today",
+    closedOn: "",
     age: "48h old",
     reviewers: [
       { name: "mike-reviewer", role: "reviewer" },
@@ -24,6 +25,7 @@ const mockPRs: PullRequest[] = [
     author: "mike-dev",
     createdAt: "today",
     updatedAt: "today",
+    closedOn: "",
     age: "5h old",
     reviewers: [{ name: "sarah-reviewer", role: "reviewer" }],
     status: "Draft",
@@ -34,6 +36,7 @@ const mockPRs: PullRequest[] = [
     author: "alex-dev",
     createdAt: "4 days ago",
     updatedAt: "2 days ago",
+    closedOn: "",
     age: "96h old",
     reviewers: [
       { name: "sarah-lead", role: "lead" },
@@ -47,6 +50,7 @@ const mockPRs: PullRequest[] = [
     author: "jane-writer",
     createdAt: "yesterday",
     updatedAt: "today",
+    closedOn: "",
     age: "24h old",
     reviewers: [{ name: "alex-lead", role: "lead" }],
     status: "Need Review",
@@ -78,23 +82,29 @@ export default function OpenPRsPage() {
     });
 
   return (
-    <main className="min-h-screen bg-gray-900 text-white p-8">
+    <main className="h-screen text-white ">
       <Filter/>
-      <h1 className="text-2xl font-bold mb-6 mt-5">Open Pull Requests</h1>
 
-      <div className="flex flex-wrap gap-4 mb-6">
-        <input
-          type="text"
-          placeholder="Search open PRs..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="bg-gray-800 text-sm px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+      <div className="px-10 mt-10">
+
+      <div className="flex flex-col lg:flex-row items-start lg:items-center mb-8 space-y-4 lg:space-y-0 justify-between">
+        <h1 className="text-3xl font-bold mb-6 mt-5">Open Pull Requests</h1>
+
+        <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0">
+          <input
+            type="text"
+            placeholder="Search Open PRs..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full max-w-[256px] bg-[#161b22] border border-[#30363D] rounded-lg pl-4 
+            pr-4 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        
 
         <select
           value={authorFilter}
           onChange={(e) => setAuthorFilter(e.target.value)}
-          className="bg-gray-800 text-sm px-3 py-2 rounded-md"
+          className="ml-6 font-bold w-[106px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
         >
           <option>All Authors</option>
           {[...new Set(mockPRs.map((pr) => pr.author))].map((author) => (
@@ -105,7 +115,7 @@ export default function OpenPRsPage() {
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="bg-gray-800 text-sm px-3 py-2 rounded-md"
+          className="ml-6 font-bold w-[159px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
         >
           <option>All Status</option>
           <option>Need Review</option>
@@ -116,12 +126,13 @@ export default function OpenPRsPage() {
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
-          className="bg-gray-800 text-sm px-3 py-2 rounded-md"
+          className="ml-6 font-bold w-[166px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
         >
-          <option>Created</option>
+          <option>Sort By Created</option>
           <option>Updated</option>
           <option>Title</option>
         </select>
+       </div>
       </div>
 
       <div className="space-y-4">
@@ -132,6 +143,7 @@ export default function OpenPRsPage() {
           <p className="text-gray-500 text-sm">No PRs found.</p>
         )}
       </div>
+     </div>
     </main>
   );
 }

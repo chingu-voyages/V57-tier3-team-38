@@ -1,23 +1,22 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import SelectFunction from './components/SelectFunction.jsx'
-import Link from 'next/link.js';
+import Link from 'next/link';
 
 export default function Home() {
-
   const [activeButton, setActiveButton] = useState<string>("home");
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
 
-
-  const toggleDropdown = () =>{
+  const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
-  }
+  };
 
   return (
     <div>
         <SelectFunction />
-        <div className="relative justify-center m-auto overflow-hidden rounded-2xl mt-8 bg-gradient-to-br from-[#147E7E] via-[#2D5D9F] to-[#7A2E2E] h-[482px] w-[1216px]">
+        <div className="relative justify-center m-auto overflow-hidden rounded-2xl mt-8 bg-gradient-to-br 
+        from-[#147E7E] via-[#2D5D9F] to-[#7A2E2E] h-auto w-full max-w-[1216px] sm:h-[482px]">
                 <div className="absolute inset-0 bg-opacity-20"></div>
                 <div className="relative text-center py-16 px-8">
                     <h2 className="text-5xl font-bold mb-6 text-white">Track Your Pull Requests</h2>
@@ -64,57 +63,68 @@ export default function Home() {
                 </div>                
             </div>
 
-            <div className='grid lg:grid-cols-2 gap-8 max-w-[1216] m-auto'>
-              <div className="mr-auto mt-16 mb-8 bg-gradient-to-br from-green-900 to-green-800 rounded-2xl p-8 border border-green-700 w-[592] h-[234]">
-                      <div className="flex items-center space-x-3 mb-6">
-                          <div className="w-12 h-12 bg-green-400 rounded-xl flex items-center justify-center">
-                              <svg className="w-7 h-7 text-green-900" fill="currentColor" viewBox="0 0 20 20">
-                                  <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path>
-                              </svg>
-                          </div>
-                          <h3 className="text-2xl font-bold text-white">For Reviewers</h3>
-                      </div>
-                      <ul className="space-y-3 text-green-100">
-                          <li className="flex items-center space-x-3">
-                              <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-                              <span>See PRs waiting for your review at a glance</span>
-                          </li>
-                          <li className="flex items-center space-x-3">
-                              <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-                              <span>Color-coded age indicators (🟢 fresh, 🟡 aging, 🔴 stale)</span>
-                          </li>
-                          <li className="flex items-center space-x-3">
-                              <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-                              <span>Filter by "My Reviews" to focus on your queue</span>
-                          </li>
-                      </ul>
-                  </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-[1216px] mx-auto mt-16 sm:mt-8">
 
-                  <div className="ml-auto mt-16 mb-8 bg-gradient-to-br from-blue-900 to-purple-800 rounded-2xl p-8 border border-blue-700 w-[592] h-[234]">
-                      <div className="flex items-center space-x-3 mb-6">
-                          <div className="w-12 h-12 bg-blue-400 rounded-xl flex items-center justify-center">
-                              <svg className="w-7 h-7 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
-                                  <path d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"></path>
-                              </svg>
-                          </div>
-                          <h3 className="text-2xl font-bold text-white">For Authors</h3>
-                      </div>
-                      <ul className="space-y-3 text-blue-100">
-                          <li className="flex items-center space-x-3">
-                              <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
-                              <span>Track your PRs from draft to merge</span>
-                          </li>
-                          <li className="flex items-center space-x-3">
-                              <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
-                              <span>See review status: waiting, changes requested, approved</span>
-                          </li>
-                          <li className="flex items-center space-x-3">
-                              <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
-                              <span>Smart caching to avoid GitHub API rate limits</span>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
+        <div className="bg-gradient-to-br from-green-900 to-green-800 rounded-2xl p-8 border border-green-700 
+          w-full sm:max-w-[605px] h-auto mx-auto">
+          <div className="flex items-center space-x-3 mb-6">
+            <div className="w-12 h-12 bg-green-400 rounded-xl flex items-center justify-center">
+              <svg
+                className="w-7 h-7 text-green-900"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path>
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold text-white">For Reviewers</h3>
+          </div>
+          <ul className="space-y-3 text-green-100">
+            <li className="flex items-center space-x-3">
+              <span className="w-2 h-2 bg-green-400 rounded-full"></span>
+              <span>See PRs waiting for your review at a glance</span>
+            </li>
+            <li className="flex items-center space-x-3">
+              <span className="w-2 h-2 bg-green-400 rounded-full"></span>
+              <span>Color-coded age indicators (🟢 fresh, 🟡 aging, 🔴 stale)</span>
+            </li>
+            <li className="flex items-center space-x-3">
+              <span className="w-2 h-2 bg-green-400 rounded-full"></span>
+              <span>Filter by "My Reviews" to focus on your queue</span>
+            </li>
+          </ul>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 bg-gradient-to-br from-blue-900 to-purple-800 rounded-2xl p-8 border border-blue-700 
+          w-full sm:max-w-[605px] h-auto mx-auto">
+          <div className="flex items-center space-x-3 mb-6">
+            <div className="w-12 h-12 bg-blue-400 rounded-xl flex items-center justify-center">
+              <svg
+                className="w-7 h-7 text-blue-900"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"></path>
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold text-white">For Authors</h3>
+          </div>
+          <ul className="space-y-3 text-blue-100">
+            <li className="flex items-center space-x-3">
+              <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+              <span>Track your PRs from draft to merge</span>
+            </li>
+            <li className="flex items-center space-x-3">
+              <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+              <span>See review status: waiting, changes requested, approved</span>
+            </li>
+            <li className="flex items-center space-x-3">
+              <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+              <span>Smart caching to avoid GitHub API rate limits</span>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
