@@ -95,7 +95,7 @@ export default function Home() {
           </ul>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 bg-gradient-to-br from-blue-900 to-purple-800 rounded-2xl p-8 border border-blue-700 
+        <div className="grid grid-cols-1 bg-gradient-to-br from-blue-900 to-purple-800 rounded-2xl p-8 border border-blue-700 
           w-full sm:max-w-[605px] h-auto mx-auto">
           <div className="flex items-center space-x-3 mb-6">
             <div className="w-12 h-12 bg-blue-400 rounded-xl flex items-center justify-center">

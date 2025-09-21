@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Profile from "./Profile";
 
 export default function Navbar() {
     const [activeButton, setActiveButton] = useState<string>("home");
@@ -52,12 +53,7 @@ export default function Navbar() {
             </button>
         </Link>
             
-                <button className="ml-auto mr-10 cursor-pointer items-center justify-end font-bold bg-blue-500 hover:bg-blue-600 text-white 
-                py-2 px-4 rounded-lg transition-colors text-sm">
-                    Sign In
-                </button>
-            
-            
+            <Profile/>
         </div>
     );
 }

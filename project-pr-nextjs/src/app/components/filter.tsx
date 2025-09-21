@@ -3,7 +3,7 @@
 import React, { useState, useRef } from 'react'
 import { PullRequest } from './PullRequestCard';
 
-export default function filter() {
+export default function Filter() {
   const [isRepoDropdownOpen, setIsRepoDropdownOpen] = useState(false);
   const [isCachingDropdownOpen, setIsCachingDropdownOpen] = useState(false);
   //const divRef = useRef<HTMLDivElement | null>(null); 
@@ -32,7 +32,7 @@ export default function filter() {
                
                 <div className="flex items-center">
                     <div className="relative w-full lg:w-auto"> {/* Adjusted for large screens to have the dropdown and search bar to be full and otherwise auto*/}
-                        <button onClick={toggleRepoDropdown} className="lg:w-full lg:h-auto ml-10 cursor-pointer w-[605px] h-[34px] bg-slate-950 border border-[#30363D]  rounded-lg px-3 py-1.5 
+                        <button onClick={toggleRepoDropdown} className="lg:w-auto lg:h-auto ml-10 cursor-pointer w-full h-[34px] bg-slate-950 border border-[#30363D]  rounded-lg px-3 py-1.5 
                         text-sm flex items-center justify-between lg:justify-start space-x-2 hover:bg-gray-800 transition-colors">
                             <div className="flex items-center space-x-2">
                                 <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
