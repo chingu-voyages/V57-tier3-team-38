@@ -82,57 +82,56 @@ export default function OpenPRsPage() {
     });
 
   return (
-    <main className="h-screen text-white ">
+    <main className="min-h-screen text-white ">
       <Filter/>
 
       <div className="px-10 mt-10">
 
-      <div className="flex flex-col lg:flex-row items-start lg:items-center mb-8 space-y-4 lg:space-y-0 justify-between">
+      <div className="flex flex-col lg:flex-row items-start lg:items-center mb-8 space-y-4 lg:space-y-0 justify-between max-w-[1216px] m-auto">
         <h1 className="text-3xl font-bold mb-6 mt-5">Open Pull Requests</h1>
 
-        <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0">
+        <div className="flex flex-row flex-wrap gap-3">
           <input
             type="text"
             placeholder="Search Open PRs..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full max-w-[256px] bg-[#161b22] border border-[#30363D] rounded-lg pl-4 
-            pr-4 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-[200px] sm:w-[220px] bg-[#161b22] border border-[#30363D] rounded-lg pl-4 pr-4 py-1.5 text-sm 
+                      focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-        
 
-        <select
-          value={authorFilter}
-          onChange={(e) => setAuthorFilter(e.target.value)}
-          className="ml-6 font-bold w-[106px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
-        >
-          <option>All Authors</option>
-          {[...new Set(mockPRs.map((pr) => pr.author))].map((author) => (
-            <option key={author}>{author}</option>
-          ))}
-        </select>
+          <select
+            value={authorFilter}
+            onChange={(e) => setAuthorFilter(e.target.value)}
+            className="font-bold w-[120px] sm:w-[140px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
+          >
+            <option>All Authors</option>
+            {[...new Set(mockPRs.map((pr) => pr.author))].map((author) => (
+              <option key={author}>{author}</option>
+            ))}
+          </select>
 
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="ml-6 font-bold w-[159px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
-        >
-          <option>All Status</option>
-          <option>Need Review</option>
-          <option>In Review</option>
-          <option>Draft</option>
-        </select>
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="font-bold w-[140px] sm:w-[160px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
+          >
+            <option>All Status</option>
+            <option>Need Review</option>
+            <option>In Review</option>
+            <option>Draft</option>
+          </select>
 
-        <select
-          value={sortBy}
-          onChange={(e) => setSortBy(e.target.value)}
-          className="ml-6 font-bold w-[166px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
-        >
-          <option>Sort By Created</option>
-          <option>Updated</option>
-          <option>Title</option>
-        </select>
-       </div>
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="font-bold w-[140px] sm:w-[160px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
+          >
+            <option>Sort By Created</option>
+            <option>Updated</option>
+            <option>Title</option>
+          </select>
+        </div>
       </div>
 
       <div className="space-y-4">

@@ -15,8 +15,8 @@ export default function Home() {
   return (
     <div>
         <SelectFunction />
-        <div className="relative justify-center m-auto overflow-hidden rounded-2xl mt-8 bg-gradient-to-br 
-        from-[#147E7E] via-[#2D5D9F] to-[#7A2E2E] h-auto w-full max-w-[1216px] sm:h-[482px]">
+        <div className="relative justify-center mx-auto overflow-hidden rounded-2xl mt-8 bg-gradient-to-br 
+        from-[#147E7E] via-[#2D5D9F] to-[#7A2E2E] h-[530px] w-[605px] md:w-auto md:h-auto lg:w-[1216px] lg:h-[482px]">
                 <div className="absolute inset-0 bg-opacity-20"></div>
                 <div className="relative text-center py-16 px-8">
                     <h2 className="text-5xl font-bold mb-6 text-white">Track Your Pull Requests</h2>
@@ -63,7 +63,7 @@ export default function Home() {
                 </div>                
             </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-[1216px] mx-auto mt-16 sm:mt-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-[605px] lg:w-[1216px] mx-auto mt-16 sm:mt-8">
 
         <div className="bg-gradient-to-br from-green-900 to-green-800 rounded-2xl p-8 border border-green-700 
           w-full sm:max-w-[605px] h-auto mx-auto">

@@ -72,29 +72,29 @@ export default function ClosedRequests() {
       });
 
   return (
-    <main className="h-screen">
+    <main className="min-h-screen">
       <Filter/>
 
       <div className="px-10 mt-10">
 
-        <div className="flex flex-col lg:flex-row items-start lg:items-center mb-8 space-y-4 lg:space-y-0 justify-between">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center mb-8 space-y-4 lg:space-y-0 justify-between max-w-[1216px] m-auto">
           <h1 className="font-bold text-3xl">Closed Pull Requests</h1>
 
-          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0">
+          <div className="flex flex-row flex-wrap gap-3">
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search Closed PRs..."
-              className="w-full max-w-[256px] bg-[#161b22] border border-[#30363D] 
-              rounded-lg pl-4 pr-4 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-[200px] sm:w-[220px] bg-[#161b22] border border-[#30363D] rounded-lg pl-4 pr-4 py-1.5 text-sm 
+                      focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <select 
             value={authorFilter}
             onChange={(e) => setAuthorFilter(e.target.value)}
-            className="ml-6 font-bold w-[106px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"            
-            >            
+            className="font-bold w-[120px] sm:w-[140px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
+            >          
               <option>All Authors</option>
               {[...new Set(mockPRs.map((pr) => pr.author))].map((author) => (
             <option key={author}>{author}</option>
@@ -104,7 +104,8 @@ export default function ClosedRequests() {
             <select
             value={typeFilter} 
             onChange={(e) => setTypeFilter(e.target.value)}
-            className="ml-6 font-bold w-[159px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg">
+            className="font-bold w-[140px] sm:w-[160px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
+          >
               <option>All Types</option>
               <option>Merged</option>
               <option>Closed</option>
@@ -113,7 +114,8 @@ export default function ClosedRequests() {
             <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)} 
-            className="ml-6 font-bold w-[166px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg">
+            className="font-bold w-[140px] sm:w-[160px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
+          >
               <option>Sort by Closed Date</option>
               <option>Updated</option>
               <option>Title</option>

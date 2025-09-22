@@ -9,7 +9,9 @@ export default function Profile() {
     return (
       <button
         onClick={() => signIn("github")}
-        className="ml-auto mr-10 cursor-pointer font-bold bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg"
+        className="flex items-center justify-center max-w-[80px] max-h-[40px] sm:h-full sm:w-auto 
+        text-sm lg:h-auto md:ml-auto md:mr-10 cursor-pointer font-bold bg-blue-500 hover:bg-blue-600 
+        text-white py-2 px-4 rounded-lg whitespace-nowrap ml-4"
       >
         Sign in
       </button>
