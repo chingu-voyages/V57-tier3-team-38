@@ -72,7 +72,7 @@ export default function ClosedRequests() {
       });
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen text-white bg-[#161B22]">
       <Filter/>
 
       <div className="px-10 mt-10">
@@ -86,16 +86,19 @@ export default function ClosedRequests() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search Closed PRs..."
-              className="w-[200px] sm:w-[220px] bg-[#161b22] border border-[#30363D] rounded-lg pl-4 pr-4 py-1.5 text-sm 
+              className="w-[200px] sm:w-[220px] bg-[#161b22] border border-[#30363D] rounded-lg pl-4 pr-4 py-1.5 text-xs
                       focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <select 
             value={authorFilter}
             onChange={(e) => setAuthorFilter(e.target.value)}
-            className="font-bold w-[120px] sm:w-[140px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
-            >          
-              <option>All Authors</option>
+
+               className="text-white font-bold w-[140px] sm:w-[160px] text-xs h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg pl-3"
+
+>          
+
+              <option className="">All Authors</option>
               {[...new Set(mockPRs.map((pr) => pr.author))].map((author) => (
             <option key={author}>{author}</option>
           ))}
@@ -104,7 +107,7 @@ export default function ClosedRequests() {
             <select
             value={typeFilter} 
             onChange={(e) => setTypeFilter(e.target.value)}
-            className="font-bold w-[140px] sm:w-[160px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
+               className="text-white font-bold w-[140px] sm:w-[160px] text-xs h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg pl-3"
           >
               <option>All Types</option>
               <option>Merged</option>
@@ -114,7 +117,7 @@ export default function ClosedRequests() {
             <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)} 
-            className="font-bold w-[140px] sm:w-[160px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
+               className="text-white font-bold w-[140px] sm:w-[160px] text-xs h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg pl-3"
           >
               <option>Sort by Closed Date</option>
               <option>Updated</option>
