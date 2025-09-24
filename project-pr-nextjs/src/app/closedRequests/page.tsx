@@ -72,12 +72,12 @@ export default function ClosedRequests() {
       });
 
   return (
-    <main className="min-h-screen text-white bg-[#161B22]">
+<main className="text-white bg-[#161B22] min-h-screen">
       <Filter/>
 
       <div className="px-10 mt-10">
 
-        <div className="flex flex-col lg:flex-row items-start lg:items-center mb-8 space-y-4 lg:space-y-0 justify-between max-w-[1216px] m-auto">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center mb-8 space-y-4 lg:space-y-0 justify-between max-w-auto m-auto">
           <h1 className="font-bold text-3xl">Closed Pull Requests</h1>
 
           <div className="flex flex-row flex-wrap gap-3">
