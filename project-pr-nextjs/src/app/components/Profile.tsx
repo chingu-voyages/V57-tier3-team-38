@@ -25,10 +25,10 @@ export default function Profile() {
         alt={session.user?.name || "GitHub Avatar"}
         className="w-8 h-8 rounded-full"
       />
-      <span className="text-white font-medium">{session.user?.name}</span>
+      {/* <span className="text-white font-medium">{session.user?.name}</span> */}
       <button
         onClick={() => signOut()}
-        className="cursor-pointer font-bold bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded-lg"
+        className="cursor-pointer text-sm font-bold bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded-lg"
       >
         Sign out
       </button>
