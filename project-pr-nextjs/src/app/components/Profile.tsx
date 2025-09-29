@@ -5,13 +5,20 @@ import { useSession, signIn, signOut } from "next-auth/react";
 export default function Profile() {
   const { data: session } = useSession();
 
+  const handleSignOut = async () => {
+    await signOut({ redirect: false });
+
+    const returnTo = encodeURIComponent(window.location.origin); 
+    window.location.href = `https://github.com/logout?return_to=${returnTo}`;
+  };
+
   if (!session) {
     return (
       <button
-        onClick={() => signIn("github")}
+        onClick={() => signIn("github", { prompt: "login" })}
         className="flex items-center justify-center max-w-[80px] max-h-[40px] sm:h-full sm:w-auto 
-        text-sm lg:h-auto md:ml-auto md:mr-10 cursor-pointer font-bold bg-blue-500 hover:bg-blue-600 
-        text-white py-2 px-4 rounded-lg whitespace-nowrap ml-4"
+          text-sm lg:h-auto md:ml-auto md:mr-10 cursor-pointer font-bold bg-blue-500 hover:bg-blue-600 
+          text-white py-2 px-4 rounded-lg whitespace-nowrap ml-4"
       >
         Sign in
       </button>
@@ -27,7 +34,7 @@ export default function Profile() {
       />
       {/* <span className="text-white font-medium">{session.user?.name}</span> */}
       <button
-        onClick={() => signOut()}
+        onClick={handleSignOut}
         className="cursor-pointer text-sm font-bold bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded-lg"
       >
         Sign out
