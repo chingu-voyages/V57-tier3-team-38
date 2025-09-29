@@ -22,7 +22,7 @@ export interface PullRequest {
 export default function PullRequestCard({ pr }: { pr: PullRequest }) {
   return (
    
-    <div className={`bg-[#161b22] mx-auto sm:mx-16 border border-[#30363D] rounded-lg p-4 hover:bg-[#30363D]/80 transition w-[500px] h-[180px] sm:w-auto sm:h-auto
+    <div className={`bg-[#161b22] mx-4 sm:mx-16 border border-[#30363D] rounded-lg p-4 hover:bg-[#30363D]/80 transition 
     ${cn(
       parseInt(pr.age) > 48
       ? " border border-l-red-400"
@@ -37,7 +37,7 @@ export default function PullRequestCard({ pr }: { pr: PullRequest }) {
         </h2>
         <span
           className={cn(
-            "px-2 py-1 text-xs rounded-md font-bold h-auto w-auto",
+            "px-2 py-1 text-xs rounded-md font-bold h-auto w-auto flex-shrink-0",
             pr.status === "Need Review" && "bg-yellow-600 text-white",
             pr.status === "In Review" && "bg-blue-600 text-white",
             pr.status === "Draft" && "bg-gray-600 text-white",
@@ -65,7 +65,7 @@ export default function PullRequestCard({ pr }: { pr: PullRequest }) {
         </span>
       </p>
 
-      <div className="flex gap-2 mt-3">
+      <div className="flex flex-wrap gap-2 mt-3">
         {pr.reviewers.map((rev) => (
           <span
             key={rev.name}

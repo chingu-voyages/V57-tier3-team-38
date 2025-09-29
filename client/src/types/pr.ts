@@ -12,11 +12,12 @@ export interface PRItem {
 }
 
 export interface PRFilters {
-  repo: string | null;       // e.g. "owner/repo"
+  repo: string | null;       // owner/repo
   user: string | null;       // filter by author/reviewer login
 }
 
 export interface PRState {
+  tab: PRStateType;
   filters: PRFilters;
   open: PRItem[];
   closed: PRItem[];
@@ -25,6 +26,7 @@ export interface PRState {
 }
 
 export type PRActions =
+  | { type: "SET_TAB"; payload: PRStateType }
   | { type: "SET_REPO"; payload: string | null }
   | { type: "SET_USER"; payload: string | null }
   | { type: "CLEAR_FILTERS" }

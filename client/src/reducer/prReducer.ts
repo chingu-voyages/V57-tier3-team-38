@@ -1,6 +1,7 @@
 import type { PRState, PRActions } from "@/types/pr";
 
 export const initialPRState: PRState = {
+  tab: "open",
   filters: { repo: null, user: null },
   open: [],
   closed: [],
@@ -10,6 +11,9 @@ export const initialPRState: PRState = {
 
 export function prReducer(state: PRState, action: PRActions): PRState {
   switch (action.type) {
+    case "SET_TAB":
+      return { ...state, tab: action.payload }; 
+
     case "SET_REPO":
       return { ...state, filters: { ...state.filters, repo: action.payload } };
     case "SET_USER":
