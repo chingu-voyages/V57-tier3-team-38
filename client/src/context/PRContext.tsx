@@ -6,6 +6,8 @@ import type { PRItem, PRState } from "@/types/pr";
 import { apiFetch } from "@/utils/api";
 
 type PRContextValue = PRState & {
+  items: PRItem[];  // derived
+  total: number;    // derived
   setRepo: (repo: string | null) => void;
   setUser: (user: string | null) => void;
   clearFilters: () => void;
@@ -30,10 +32,13 @@ export function PRProvider({ children }: { children: React.ReactNode }) {
   };
 
   const loadOpenPRs = useCallback(async () => {
+    dispatch({ type: "SET_TAB", payload: "open" });
     dispatch({ type: "SET_LOADING", payload: true });
     dispatch({ type: "SET_ERROR", payload: null });
     try {
-      const data = await apiFetch<{ items: PRItem[] }>(`/api/prs${buildQuery()}${buildQuery() ? "&" : "?"}state=open`);
+      const data = await apiFetch<{ items: PRItem[] }>(
+        `/api/prs${buildQuery()}${buildQuery() ? "&" : "?"}state=open`
+      );
       dispatch({ type: "SET_OPEN_PRS", payload: data.items });
     } catch (e: any) {
       dispatch({ type: "SET_ERROR", payload: e?.message ?? "Failed to load open PRs" });
@@ -43,10 +48,13 @@ export function PRProvider({ children }: { children: React.ReactNode }) {
   }, [state.filters.repo, state.filters.user]);
 
   const loadClosedPRs = useCallback(async () => {
+    dispatch({ type: "SET_TAB", payload: "closed" });
     dispatch({ type: "SET_LOADING", payload: true });
     dispatch({ type: "SET_ERROR", payload: null });
     try {
-      const data = await apiFetch<{ items: PRItem[] }>(`/api/prs${buildQuery()}${buildQuery() ? "&" : "?"}state=closed`);
+      const data = await apiFetch<{ items: PRItem[] }>(
+        `/api/prs${buildQuery()}${buildQuery() ? "&" : "?"}state=closed`
+      );
       dispatch({ type: "SET_CLOSED_PRS", payload: data.items });
     } catch (e: any) {
       dispatch({ type: "SET_ERROR", payload: e?.message ?? "Failed to load closed PRs" });
@@ -55,9 +63,22 @@ export function PRProvider({ children }: { children: React.ReactNode }) {
     }
   }, [state.filters.repo, state.filters.user]);
 
+  // ➕➕ DERIVED FIELDS (add these)
+  const items: PRItem[] = state.tab === "open" ? state.open : state.closed;
+  const total = items.length; // swap to backend total later if you add it
+
   const value: PRContextValue = useMemo(
-    () => ({ ...state, setRepo, setUser, clearFilters, loadOpenPRs, loadClosedPRs }),
-    [state, loadOpenPRs, loadClosedPRs]
+    () => ({
+      ...state,
+      items,          // ➕ include
+      total,          // ➕ include
+      setRepo,
+      setUser,
+      clearFilters,
+      loadOpenPRs,
+      loadClosedPRs,
+    }),
+    [state, items, total, loadOpenPRs, loadClosedPRs] // include in deps
   );
 
   return <PRContext.Provider value={value}>{children}</PRContext.Provider>;
