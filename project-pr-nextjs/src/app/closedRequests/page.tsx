@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react'
-import PullRequestCard, { PullRequest } from '../components/PullRequestCard'
+import PullRequestCard, { PullRequest } from '../components/PullRequestCardClosedPageTemp'
 import Filter from '../components/filter'
 
 const mockPRs: PullRequest[] = [
