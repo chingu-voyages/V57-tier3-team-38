@@ -11,6 +11,7 @@ Chingu Voyage Project - GitHub PR Review Status Board
 * [Contributing](#contributing)
 * [Acknowledgements](#acknowledgements)
 * [About Chingu](#about-chingu)
+* [GitHUb OAuth](#github-oauth)
 
 ## Team Documents
 
@@ -295,6 +296,23 @@ If you aren't yet a member of Chingu we invite you to [join us](https://chingu.i
 We help our members transform what they've learned in courses & tutorials into the
 practical experience employers need and want. The experience that helps to set you
 apart from other applicants for the same jobs.
+
+## Github Oauth
+
+In settings -> Developer Settings -> OAuth -> New Oauth App 
+Application name: 'PR Status'
+Homepage URL: 'http://localhost:3000'
+Authorized Callbac URL: 'http://localhost:3000/api/auth/callback/github' 
+
+Under project-pr-nextjs, create env.local with 
+
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_long_random_string
+GITHUB_ID=content ID from github
+GITHUB_SECRET=generate a secret key after creating oauth
+NEXT_PUBLIC_API_URL=http://localhost:5000
+
+
 
 ## Contributing
 
