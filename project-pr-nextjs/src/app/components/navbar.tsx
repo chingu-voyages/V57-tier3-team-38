@@ -41,7 +41,7 @@ export default function Navbar() {
                 }`}
                 onClick={() => setActiveButton("open-prs")}
             >
-                🔓 Open PRs
+                🔓 Open PR's
             </button>
         </Link>
 
@@ -53,7 +53,7 @@ export default function Navbar() {
                 }`}
                 onClick={() => setActiveButton("closed-prs")}
             >
-                ✅ Closed PRs
+                ✅ Closed PR's
             </button>
         </Link>
         </div>
