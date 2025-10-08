@@ -56,9 +56,9 @@ export default function Navbar() {
                 ✅ Closed PRs
             </button>
         </Link>
-        </div>
+    
             
             <Profile/>
-        </div>
+     </div>
     );
 }
