@@ -25,7 +25,7 @@ export default function Navbar() {
             <button
                 className={`flex justify-center items-center rounded-md duration-200 
                 ease-in-out hover:-translate-y-1 bg-[#161B22] cursor-pointer m-2 md:m-4 w-[70px] h-[65px] md:h-[40px] md:w-[98px] ${
-                    activeButton === "home" ? "text-[#58A6FF] bg-zinc-950" : "text-white bg-[#161B22]"
+                    activeButton === "home" ? "text-[#58A6FF] bg-zinc-950" : "text-white bg-[#161B22] text-xs sm:text-sm"
                 }`}
                 onClick={() => setActiveButton("home")}
             >
@@ -36,8 +36,8 @@ export default function Navbar() {
         <Link href="/openRequests" passHref>
             <button
                 className={`flex justify-center items-center rounded-md duration-200 
-                ease-in-out hover:-translate-y-1 bg-[#161B22] cursor-pointer m-2 md:m-4  md:h-[40px] md:w-[127px] ${
-                    activeButton === "open-prs" ? "text-[#58A6FF] bg-zinc-950" : "text-white bg-[#161B22]"
+                ease-in-out hover:-translate-y-1 bg-[#161B22] cursor-pointer m-2 md:m-4 w-[70px] h-[65px] md:h-[40px] md:w-[98px] ${
+                    activeButton === "open-prs" ? "text-[#58A6FF] bg-zinc-950" : "text-white bg-[#161B22] text-xs sm:text-sm"
                 }`}
                 onClick={() => setActiveButton("open-prs")}
             >
@@ -48,14 +48,15 @@ export default function Navbar() {
         <Link href="/closedRequests" passHref>
             <button
                 className={`flex justify-center items-center rounded-md duration-200 
-                ease-in-out hover:-translate-y-1 bg-[#161B22] cursor-pointer m-2 md:m-4 w-[80px] h-[75px] md:h-[40px] md:w-[139px] ${
-                    activeButton === "closed-prs" ? "text-[#58A6FF] bg-zinc-950" : "text-white bg-[#161B22]"
+                ease-in-out hover:-translate-y-1 bg-[#161B22] cursor-pointer m-2 md:m-4 w-[75px] h-[70px] md:h-[40px] md:w-[127px] ${
+                    activeButton === "closed-prs" ? "text-[#58A6FF] bg-zinc-950" : "text-white bg-[#161B22] text-xs sm:text-sm"
                 }`}
                 onClick={() => setActiveButton("closed-prs")}
             >
                 ✅ Closed PRs
             </button>
         </Link>
+        </div>
             
             <Profile/>
         </div>
