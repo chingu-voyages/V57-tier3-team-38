@@ -3,103 +3,16 @@
 import { useEffect, useMemo, useState } from "react";
 import PullRequestCard, { PullRequest as CardPR } from "../components/PullRequestCard";
 import Filter from "../components/filter";
+import { getOpenPRs } from "@/lib/api";
+import type { PullRequest, Reviewer, PRStatus } from "@shared/types";
 
 /**
- * ---- OLD MOCK DATA (kept for reference) -------------------------------------
- */
-// const mockPRs: CardPR[] = [
-//   {
-//     id: 1234,
-//     title: "Add dark mode support to dashboard components",
-//     author: "sarah-dev",
-//     createdAt: "2 days ago",
-//     updatedAt: "today",
-//     closedOn: "",
-//     age: "48h old",
-//     reviewers: [
-//       { name: "mike-reviewer", role: "reviewer" },
-//       { name: "alex-lead", role: "lead" },
-//     ],
-//     status: "Need Review",
-//   },
-//   {
-//     id: 1235,
-//     title: "Fix responsive layout issues on mobile devices",
-//     author: "mike-dev",
-//     createdAt: "today",
-//     updatedAt: "today",
-//     closedOn: "",
-//     age: "5h old",
-//     reviewers: [{ name: "sarah-reviewer", role: "reviewer" }],
-//     status: "Draft",
-//   },
-//   {
-//     id: 1236,
-//     title: "Implement GitHub API integration for real-time PR data",
-//     author: "alex-dev",
-//     createdAt: "4 days ago",
-//     updatedAt: "2 days ago",
-//     closedOn: "",
-//     age: "96h old",
-//     reviewers: [
-//       { name: "sarah-lead", role: "lead" },
-//       { name: "mike-reviewer", role: "reviewer" },
-//     ],
-//     status: "In Review",
-//   },
-//   {
-//     id: 1237,
-//     title: "Update documentation for new API endpoints",
-//     author: "jane-writer",
-//     createdAt: "yesterday",
-//     updatedAt: "today",
-//     closedOn: "",
-//     age: "24h old",
-//     reviewers: [{ name: "alex-lead", role: "lead" }],
-//     status: "Need Review",
-//   },
-// ];
-
-/**
- * ---- API Types (from server) ------------------------------------------------
- * If you already set up /shared/types.ts, you can import from "@shared/types" instead.
- */
-type PRStatus = "Need Review" | "In Review" | "Draft" | "Closed" | "Merged";
-interface Reviewer { name: string; role: string }
-interface ApiPullRequest {
-  id: number;
-  title: string;
-  author: string;
-  createdAt: string;    // ISO
-  updatedAt: string;    // ISO
-  closedOn: string;     // ISO or ""
-  ageHours: number;     // numeric from backend
-  reviewers: Reviewer[];
-  status: PRStatus;
-}
-
-/**
- * ---- Minimal API helper using fetch ----------------------------------------
- */
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
-
-async function getOpenPRs(): Promise<ApiPullRequest[]> {
-  const res = await fetch(`${API_BASE}/api/pullrequests?state=open`, { cache: "no-store" });
-  if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(`API ${res.status} ${res.statusText} ${text}`);
-  }
-  return res.json();
-}
-
-/**
- * ---- Small helpers to format times for display ------------------------------
+ * ---- Helper: format ISO timestamps into short display strings ---------------
  */
 function isoToShort(iso: string): string {
   // e.g., "2025-10-06T14:12:00Z" -> "2025-10-06 14:12"
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
-  // Keep it simple (avoid locale surprises): YYYY-MM-DD HH:MM
   const yyyy = d.getFullYear();
   const mm = String(d.getMonth() + 1).padStart(2, "0");
   const dd = String(d.getDate()).padStart(2, "0");
@@ -108,38 +21,52 @@ function isoToShort(iso: string): string {
   return `${yyyy}-${mm}-${dd} ${hh}:${min}`;
 }
 
+/**
+ * ---- Main Component ---------------------------------------------------------
+ */
 export default function OpenPRsPage() {
-  // UI state
+  // UI filters & state
   const [authorFilter, setAuthorFilter] = useState("All Authors");
   const [statusFilter, setStatusFilter] = useState("All Status");
   const [sortBy, setSortBy] = useState<"Created" | "Updated" | "Title">("Created");
   const [searchTerm, setSearchTerm] = useState("");
+
+  // Loading & error handling
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // Data state (mapped to the Card's expected shape)
+  // Data
   const [prs, setPrs] = useState<CardPR[]>([]);
 
   useEffect(() => {
     let mounted = true;
+
     (async () => {
       try {
         setLoading(true);
         setErrorMsg(null);
 
-        const apiData = await getOpenPRs();
+        // TODO: replace these with your selected owner/repo values if needed
+        const owner = "chingu-voyages";
+        const repo = "V57-tier3-team-38";
 
-        // Map API shape -> PullRequestCard shape (expects `age` string, created/updated as strings)
+        const apiData: PullRequest[] = await getOpenPRs(owner, repo);
+
+        // Map API -> PullRequestCard shape (CardPR)
         const mapped: CardPR[] = apiData.map((p) => ({
           id: p.id,
           title: p.title,
-          author: p.author,
-          createdAt: isoToShort(p.createdAt),
-          updatedAt: isoToShort(p.updatedAt),
-          closedOn: p.closedOn ? isoToShort(p.closedOn) : "",
-          age: `${p.ageHours}h old`,
-          reviewers: p.reviewers,
-          status: p.status,
+          author: p.user?.login ?? "unknown",
+          createdAt: isoToShort(p.created_at),
+          updatedAt: isoToShort(p.updated_at),
+          closedOn: p.state === "closed" ? isoToShort(p.updated_at) : "",
+          age: "", // optional: can compute age later
+          reviewers: [] as Reviewer[], // backend placeholder
+          status: p.draft
+            ? "Draft"
+            : p.state === "open"
+            ? "Need Review"
+            : "Closed", // simplified logic for now
         }));
 
         if (mounted) setPrs(mapped);
@@ -149,11 +76,15 @@ export default function OpenPRsPage() {
         if (mounted) setLoading(false);
       }
     })();
+
     return () => {
       mounted = false;
     };
   }, []);
 
+  /**
+   * ---- Derived filters & sorting --------------------------------------------
+   */
   const authors = useMemo(() => {
     const set = new Set<string>();
     prs.forEach((p) => set.add(p.author));
@@ -179,6 +110,9 @@ export default function OpenPRsPage() {
     return sorted;
   }, [prs, authorFilter, statusFilter, searchTerm, sortBy]);
 
+  /**
+   * ---- Render ---------------------------------------------------------------
+   */
   return (
     <main className="min-h-screen text-white">
       <Filter />
@@ -188,6 +122,7 @@ export default function OpenPRsPage() {
           <h1 className="text-3xl font-bold mb-6 mt-5">Open Pull Requests</h1>
 
           <div className="flex flex-row flex-wrap gap-3">
+            {/* Search box */}
             <input
               type="text"
               placeholder="Search Open PRs..."
@@ -197,6 +132,7 @@ export default function OpenPRsPage() {
                          focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
+            {/* Author filter */}
             <select
               value={authorFilter}
               onChange={(e) => setAuthorFilter(e.target.value)}
@@ -208,6 +144,7 @@ export default function OpenPRsPage() {
               ))}
             </select>
 
+            {/* Status filter */}
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
@@ -221,10 +158,10 @@ export default function OpenPRsPage() {
               <option>Merged</option>
             </select>
 
-            {/* FIX: give options explicit values so sorting works */}
+            {/* Sorting */}
             <select
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
+              onChange={(e) => setSortBy(e.target.value as "Created" | "Updated" | "Title")}
               className="font-bold w-[140px] sm:w-[160px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
             >
               <option value="Created">Created</option>
