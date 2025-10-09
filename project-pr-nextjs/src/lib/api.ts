@@ -1,6 +1,6 @@
 import type { PullRequest } from "@shared/types";
 
-
+// For development, always go through the Next.js proxy to avoid CORS.
 // The proxy adds your GitHub token (if logged in) and forwards to Express.
 export async function getOpenPRs(owner: string, repo: string): Promise<PullRequest[]> {
   const url = `/api/proxy/pullrequests?owner=${encodeURIComponent(owner)}&repo=${encodeURIComponent(repo)}&state=open`;

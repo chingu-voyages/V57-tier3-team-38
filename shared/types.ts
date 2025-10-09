@@ -2,13 +2,15 @@ export interface Reviewer { name: string; role: string }
 export type PRStatus = "Need Review" | "In Review" | "Draft" | "Closed" | "Merged";
 
 export interface PullRequest {
-  id: number;
+  id: number;                        // internal unique ID
+  number: number;                    // visible PR number (#123)
   title: string;
-  author: string;
-  createdAt: string;   // ISO
-  updatedAt: string;   // ISO
-  closedOn: string;    // ISO or ""
-  ageHours: number;    // use number for logic; format in UI
-  reviewers: Reviewer[];
-  status: PRStatus;
+  html_url: string;
+  state: "open" | "closed";          // GitHub states
+  user?: { login?: string };         // PR author info
+  created_at: string;                // ISO date strings
+  updated_at: string;
+  draft?: boolean;                   // true if PR is draft
+  base?: { ref?: string };           // target branch (e.g. main)
+  head?: { ref?: string };           // source branch (e.g. feature-x)
 }
