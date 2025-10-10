@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from 'react'
-import { PullRequest } from './PullRequestCard';
+// import { PullRequest } from './PullRequestCard';
 
 interface FilterProps {
   onSearchChange?: (term: string) => void;
