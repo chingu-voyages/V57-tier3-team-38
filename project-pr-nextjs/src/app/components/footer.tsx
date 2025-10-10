@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react'
+import ChatBot from '../components/chatBot'
 
 export default function Footer() {
   return (
@@ -27,6 +28,7 @@ export default function Footer() {
                         Built by <span className="text-white">Trevor</span>, <span className="text-white">Spandan</span>, <span className="text-white">Marissa</span>
                     </div>
                 </div>
+                <ChatBot/>
             </div>
     </footer>
   )

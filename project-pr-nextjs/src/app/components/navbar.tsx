@@ -3,9 +3,15 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Profile from "./Profile";
+import SelectFunction from "./SelectFunction";
 
 export default function Navbar() {
     const [activeButton, setActiveButton] = useState<string>("home");
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    const toggleDropdown = () =>{
+        setIsOpen(!isOpen);
+    }
 
     return (
         <div className="flex items-center bg-[#161B22] border border-[#30363D] h-[112px] p-4 ">
@@ -51,8 +57,8 @@ export default function Navbar() {
             >
                 ✅ Closed PRs
             </button>
-        </Link>
-            
+        </Link>     
+          
             <Profile/>
         </div>
     );
