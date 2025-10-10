@@ -1,11 +1,17 @@
 "use client";
 
 import React, { useState, useRef } from 'react'
-import { PullRequest } from './PullRequestCard';
+// import { PullRequest } from './PullRequestCard';
 
-export default function Filter() {
+interface FilterProps {
+  onSearchChange?: (term: string) => void;
+  currentState?: "open" | "closed"; // optional: filter mode
+}
+
+export default function Filter({ onSearchChange }: FilterProps) {
   const [isRepoDropdownOpen, setIsRepoDropdownOpen] = useState(false);
   const [isCachingDropdownOpen, setIsCachingDropdownOpen] = useState(false);
+  const [query, setQuery] = useState("");   
   //const divRef = useRef<HTMLDivElement | null>(null); 
 
   const toggleRepoDropdown = () => {
@@ -65,7 +71,17 @@ export default function Filter() {
 
  <div className="flex-1 lg:max-w-md px-4 lg:px-0 w-full">
       <div className="relative">
-        <input type="text" id="globalSearch" placeholder="Search PRs..." className="w-full h-auto lg:h-[34px] bg-slate-950 border border-[#30363D] rounded-lg pl-9 pr-4 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+        <input type="text" 
+          id="globalSearch" 
+          placeholder="Search PRs..." 
+          className="w-full h-auto lg:h-[34px] bg-slate-950 border border-[#30363D] rounded-lg pl-9 pr-4 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={query}
+          onChange={(e) => {
+            const val = e.target.value;
+            setQuery(val);
+            onSearchChange?.(val);
+          }}
+          />
         <svg className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
           <path d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"></path>
         </svg>
