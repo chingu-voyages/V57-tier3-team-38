@@ -90,7 +90,7 @@ export default function Home() {
             </li>
             <li className="flex items-center space-x-3">
               <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-              <span>Filter by "My Reviews" to focus on your queue</span>
+              <span>Filter by My Reviews to focus on your queue</span>
             </li>
           </ul>
         </div>
