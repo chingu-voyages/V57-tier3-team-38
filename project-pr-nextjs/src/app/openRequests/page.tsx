@@ -25,8 +25,8 @@ export default function OpenPRsPage() {
         const { data } = await octokit.request(
           "GET /repos/{owner}/{repo}/pulls",
           {
-            owner: process.env.NEXT_PUBLIC_GITHUB_ORG,
-            repo: process.env.NEXT_PUBLIC_GITHUB_REPO_NAME,
+            owner: process.env.NEXT_PUBLIC_GITHUB_ORG as string,
+            repo: process.env.NEXT_PUBLIC_GITHUB_REPO_NAME as string,
             state: "open",
             headers: { "X-GitHub-Api-Version": "2022-11-28" },
           }
@@ -34,6 +34,9 @@ export default function OpenPRsPage() {
 
         const formatted: PullRequest[] = await Promise.all(
           data.map(async (pr: any) => {
+            type PRStatus = PullRequest["status"]; 
+            let status: PRStatus = "Unapproved";
+            
             const { data: reviews } = await octokit.request(
               "GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews",
               {
