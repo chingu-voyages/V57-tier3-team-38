@@ -36,9 +36,9 @@ export default function PullRequestCard({ pr }: { pr: PullRequest }) {
       className="block"
     >
       <div
-        className={`bg-[#161b22] mx-auto sm:mx-16 border border-[#30363D] rounded-lg p-4 hover:bg-[#30363D]/80 transition h-[180px] sm:w-auto sm:h-auto
+        className={`bg-[#161b22] mx-auto sm:mx-16 border border-[#30363D] rounded-lg p-4 hover:bg-[#30363D]/80 transition sm:w-auto sm:h-auto
         ${cn(
-          pr.status === "Unapproved" && "border-l-2 border-l-amber-600",
+          pr.status === "Unapproved" && "border-l-2 border-l-orange-600",
           pr.status === "Pending approvals" && "border-l-2 border-l-yellow-600",
           pr.status === "Requested changes" && "border-l-2 border-l-red-600",
           pr.status === "Approved" && "border-l-2 border-l-green-600",
@@ -53,7 +53,7 @@ export default function PullRequestCard({ pr }: { pr: PullRequest }) {
           <span
             className={cn(
               "px-3 py-2 text-xs rounded-md font-bold h-auto w-auto",
-              pr.status === "Unapproved" && "bg-amber-600 text-white",
+              pr.status === "Unapproved" && "bg-orange-600 text-white",
               pr.status === "Pending approvals" && "bg-yellow-600 text-white",
               pr.status === "Requested changes" && "bg-red-700 text-white",
               pr.status === "Approved" && "bg-green-600 text-white",
@@ -67,30 +67,32 @@ export default function PullRequestCard({ pr }: { pr: PullRequest }) {
 
         <p className="text-sm text-gray-400">
           by <span className="font-medium text-white">{pr.author}</span> •
-          created {pr.createdAt} • updated {pr.updatedAt} • last action:{" "}
+          created {pr.createdAt} • updated {pr.updatedAt} • ** {" "}
           <span
             className={cn(
               pr.lastAction === "Approved" && "text-green-600",
               pr.lastAction === "Requested changes" && "text-red-600",
               pr.lastAction === "Commented" && "text-yellow-600",
-              pr.lastAction === "Unapproved" && "text-amber-600",
-              !pr.lastAction && "text-gray-400"
+              (pr.lastAction === "Unapproved" || pr.lastAction === "Updated") && "text-orange-600",
+              !pr.lastAction && "text-orange-600"
             )}
           >
+            last action: {" "}
             {pr.lastAction}
           </span>{" "}
-          •{" "}
+          {" "}
           <span
             className={cn(
               pr.lastAction === "Approved" && "text-green-600",
               pr.lastAction === "Requested changes" && "text-red-600",
               pr.lastAction === "Commented" && "text-yellow-600",
-              pr.lastAction === "Unapproved" && "text-amber-600",
-              !pr.lastAction && "text-gray-400"
+              (pr.lastAction === "Unapproved" || pr.lastAction === "Updated") && "text-orange-600",
+              !pr.lastAction && "text-orange-600"
             )}
           >
-            {pr.lastActionAt}h ago
+            {pr.lastActionAt}h ago{" "}
           </span>
+          **
         </p>
 
         <div className="mt-3 space-y-1 text-gray-400 text-sm">

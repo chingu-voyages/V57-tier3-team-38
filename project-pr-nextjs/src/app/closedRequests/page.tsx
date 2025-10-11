@@ -26,33 +26,43 @@ type PullRequest = {
   rawClosedAt: string; // Crucial for accurate date sorting in main file
 };
 
-// Placeholder for the external Filter component (changed to arrow function)
-// const Filter = () => {
-//     return (
-//         // Render a simple div placeholder for the filter component
-//         <div className="bg-[#161B22] border-b border-[#30363D] py-3 px-10">
-//             {/* The actual Filter component content is external */}
-//         </div>
-//     );
-// }
 const PullRequestCard = ({ pr }: { pr: PullRequest }) => {
-  const ageInHours = parseInt(pr.age.replace("h old", ""), 10);
+  const hoursSinceClosed =
+    (Date.now() - new Date(pr.rawClosedAt).getTime()) / (1000 * 60 * 60);
 
-  // Determine the left border color based on age (time PR was open before closure)
-  const ageClass =
-    ageInHours > 72 // More than 3 days (72h) is critical
-      ? "border-l-red-400"
-      : ageInHours >= 24
-      ? "border-l-yellow-400" // More than 1 day (24h) is a concern
-      : "border-l-green-400"; // Less than a day is good
+  const days = Math.floor(hoursSinceClosed / 24);
+  const hours = Math.floor(hoursSinceClosed % 24);
+
+  const timeDisplay =
+    days > 0
+      ? `${days} day${days > 1 ? "s" : ""}${
+          hours > 0 ? ` ${hours} hour${hours > 1 ? "s" : ""}` : ""
+        } ago`
+      : `${Math.floor(hoursSinceClosed)}h ago`;
+
+
+  const borderClass =
+    pr.status === "Merged"
+      ? "border-l-purple-600"
+      : pr.status === "Closed"
+      ? "border-l-red-600"
+      : "border-l-gray-600";
+
+  const timeColor =
+    hoursSinceClosed < 24
+      ? "text-green-400"
+      : hoursSinceClosed < 72
+      ? "text-yellow-400"
+      : "text-orange-600";
+
 
   return (
     <div
       className={cn(
         // "bg-[#161b22] mx-auto sm:mx-16 border border-[#30363D] rounded-lg p-4 hover:bg-[#30363D]/80 transition",
         // "w-full max-w-4xl h-auto",
-        "bg-[#161b22] mx-auto sm:mx-16 border border-[#30363D] rounded-lg p-4 hover:bg-[#30363D]/80 transition  h-[180px] sm:w-auto sm:h-auto",
-        `${ageClass}`
+        "bg-[#161b22] mx-auto sm:mx-16 border border-[#30363D] rounded-lg p-4 hover:bg-[#30363D]/80 transition sm:w-auto sm:h-auto",
+        `${borderClass}`
       )}
     >
       <a
@@ -80,18 +90,11 @@ const PullRequestCard = ({ pr }: { pr: PullRequest }) => {
 
         <p className="text-sm text-gray-400">
           by <span className="font-medium text-white">{pr.author}</span> •
-          created {pr.createdAt} • **closed {pr.closedOn}** • open time:{" "}
-          <span
-            className={cn(
-              ageInHours > 72
-                ? "text-red-400"
-                : ageInHours >= 24
-                ? "text-yellow-400"
-                : "text-green-400"
-            )}
-          >
-            {pr.age}
-          </span>
+          created {pr.createdAt} • {pr.status.toLowerCase()} {pr.closedOn} •{" "}  ** {" "}
+          <span className={timeColor}>
+            {pr.status.toLowerCase()} {timeDisplay}
+          </span>{" "}
+          **
         </p>
       </a>
 

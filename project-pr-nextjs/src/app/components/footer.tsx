@@ -25,11 +25,11 @@ export default function Footer() {
                     </div>
                     <div className="text-gray-400 text-sm text-center md:text-right">
                         <div>
-                            Scrum Master: <span className="text-white">Adel</span>
+                            Scrum Master: <span className="text-white">Adelola Abioye</span>
                         </div>
 
                         <div>
-                            Voyage Guide: <span className="text-white">esd</span>
+                            Voyage Guide: <span className="text-white">Esd</span>
                         </div>
 
                         <div>
