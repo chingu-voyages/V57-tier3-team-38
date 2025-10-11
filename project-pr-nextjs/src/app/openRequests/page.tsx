@@ -217,7 +217,7 @@ export default function OpenPRsPage() {
     });
 
   return (
-    <main className="min-h-screen text-white">
+    <main className="text-white bg-[#161B22] min-h-screen font-['Inter']">
       <Filter
         onFetchLive={fetchLiveData}
         onUseCache={useCache}
