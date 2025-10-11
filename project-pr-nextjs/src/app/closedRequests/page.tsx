@@ -26,6 +26,15 @@ type PullRequest = {
   rawClosedAt: string; // Crucial for accurate date sorting in main file
 }
 
+// Placeholder for the external Filter component (changed to arrow function)
+const Filter = () => {
+    return (
+        // Render a simple div placeholder for the filter component
+        <div className="bg-[#161B22] border-b border-[#30363D] py-3 px-10">
+            {/* The actual Filter component content is external */}
+        </div>
+    );
+}
 const PullRequestCard = ({ pr }: { pr: PullRequest }) => {
   const ageInHours = parseInt(pr.age.replace('h old', ''), 10);
 
