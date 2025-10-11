@@ -38,7 +38,7 @@ coding!
 - Spandan Mahat : [GitHub](https://github.com/spandanmahat00) / [LinkedIn](https://linkedin.com/in/spandan-mahat-078662266)
 - Trevor Topolski : [GitHub](https://github.com/Trevor-04) / [LinkedIn](https://linkedin.com/in/trevortopolski)
 
-- Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Adelola Abioye: [GitHub](https://github.com/Adel-abio) / [LinkedIn](https://www.linkedin.com/in/adelola-abioye/)
 
 ## Overview
 
