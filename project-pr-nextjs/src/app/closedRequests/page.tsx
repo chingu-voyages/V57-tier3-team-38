@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 // import PullRequestCard, { PullRequest } from "../components/PullRequestCard";
 // import { Octokit } from "octokit";
-
+import Filter from '../components/filter';
 
 const cn = (...classes) => classes.filter(Boolean).join(' ');
 
@@ -49,19 +49,22 @@ const PullRequestCard = ({ pr }: { pr: PullRequest }) => {
   return (
     <div 
       className={cn(
-        "bg-[#161b22] mx-auto sm:mx-16 border border-[#30363D] rounded-lg p-4 hover:bg-[#30363D]/80 transition",
-        "w-full max-w-4xl h-auto",
-        `border-l-4 ${ageClass}`
+        // "bg-[#161b22] mx-auto sm:mx-16 border border-[#30363D] rounded-lg p-4 hover:bg-[#30363D]/80 transition",
+        // "w-full max-w-4xl h-auto",
+               "bg-[#161b22] mx-auto sm:mx-16 border border-[#30363D] rounded-lg p-4 hover:bg-[#30363D]/80 transition  h-[180px] sm:w-auto sm:h-auto",
+        `${ageClass}`
       )}
     >
       <a href={pr.url} target="_blank" rel="noopener noreferrer" className="block">
         <div className="flex justify-between items-start mb-2">
           <h2 className="font-semibold text-lg text-white hover:text-blue-200 transition">
-            <span className="text-gray-500 font-normal">#{pr.id}</span> {pr.title}
+            <span className="font-bold">#{pr.id}</span> {pr.title}
           </h2>
           <span
             className={cn(
-              "px-2 py-1 text-xs rounded-md font-bold h-auto w-auto min-w-[70px] text-center whitespace-nowrap",
+              // "px-2 py-1 text-xs rounded-md font-bold h-auto w-auto min-w-[70px] text-center whitespace-nowrap",
+              "px-3 py-2 text-xs rounded-md font-bold h-auto w-auto",
+
               pr.status === "Closed" && "bg-red-600 text-white",
               pr.status === "Merged" && "bg-purple-600 text-white"
             )}
@@ -142,74 +145,6 @@ export default function ClosedRequests() {
                     setLoading(false);
                     return;
                 }
-// const formatted: PullRequest[] = await Promise.all(
-//   prsData.map(async (pr: any) => {
-//     const isMerged = pr.merged_at !== null;
-//     const status = isMerged ? "Merged" : "Closed";
-
-//     const createdDate = new Date(pr.created_at);
-//     const closedDate = new Date(pr.closed_at);
-//     const closedOnString = closedDate.toLocaleDateString();
-
-//     const hoursOpen = Math.floor(
-//       (closedDate.getTime() - createdDate.getTime()) / (1000 * 60 * 60)
-//     );
-//     const ageString = `${hoursOpen}`;
-
-//     // Fetch reviews
-//     const reviewsResponse = await fetch(pr.url + "/reviews", { headers });
-//     const reviews = await reviewsResponse.json();
-
-//     const reviewersGrouped = {
-//       approved: [] as string[],
-//       changesRequested: [] as string[],
-//       commented: [] as string[],
-//       pending: [] as string[],
-//     };
-
-//     const latestReviews = reviews.reduce((acc: any, review: any) => {
-//       acc[review.user.login] = review;
-//       return acc;
-//     }, {});
-
-//     Object.entries(latestReviews).forEach(([login, review]: any) => {
-//       if (review.state === "APPROVED") reviewersGrouped.approved.push(login);
-//       else if (review.state === "CHANGES_REQUESTED")
-//         reviewersGrouped.changesRequested.push(login);
-//       else if (review.state === "COMMENTED")
-//         reviewersGrouped.commented.push(login);
-//     });
-
-//     (pr.requested_reviewers || []).forEach((rev: any) => {
-//       if (!latestReviews[rev.login])
-//         reviewersGrouped.pending.push(rev.login);
-//     });
-
-//     // Determine the last action
-//     let lastAction = "Closed";
-//     let lastActionAt = hoursOpen.toString();
-
-//     if (isMerged) lastAction = "Merged";
-
-//     return {
-//       id: pr.number,
-//       title: pr.title,
-//       author: pr.user.login,
-//       createdAt: new Date(pr.created_at).toLocaleDateString(),
-//       updatedAt: new Date(pr.updated_at).toLocaleDateString(),
-//       closedOn: closedOnString,
-//       age: ageString,
-//       status,
-//       url: pr.html_url,
-//       lastAction,
-//       lastActionAt,
-//       reviewersGrouped,
-//     };
-//   })
-// );
-
-
-
 
                 const formatted: PullRequest[] = await Promise.all(
                     prsData.map(async (pr: any) => {
@@ -321,7 +256,7 @@ export default function ClosedRequests() {
       <Filter/>
 
       {loading ? (
-        <div className="p-10 flex justify-center items-center">
+        <div className="p-10 mt-10">
              <p className="text-xl animate-pulse">
                 <span className="text-white mr-2">
                     <svg className="animate-spin inline -ml-1 mr-3 h-5 w-5 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -338,20 +273,20 @@ export default function ClosedRequests() {
         <div className="flex flex-col lg:flex-row items-start lg:items-center mb-8 space-y-4 lg:space-y-0 justify-between max-w-[1216px] m-auto">
                 <h1 className="text-3xl font-bold mb-6 mt-5">Closed Pull Requests</h1>
 
-                <div className="flex flex-row flex-wrap gap-3 w-full lg:w-auto justify-end">
+                <div className="flex flex-row flex-wrap gap-3">
                     <input
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Search Closed PRs..."
-                    className="w-full sm:w-[220px] bg-[#161b22] border border-[#30363D] rounded-lg pl-4 pr-4 py-1.5 text-xs
-                            focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500"
+                    className="w-[200px] sm:w-[220px] bg-[#161b22] border border-[#30363D] rounded-lg pl-4 pr-4 py-1.5 text-sm 
+                        focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
 
                     <select 
                     value={authorFilter}
                     onChange={(e) => setAuthorFilter(e.target.value)}
-                    className="text-white font-bold w-[140px] sm:w-[160px] text-xs h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg pl-3"
+              className="font-bold w-[120px] sm:w-[140px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
                     >          
                         <option className="bg-[#161b22]">All Authors</option>
                         {[...new Set(prs.map((pr) => pr.author))].sort().map((author) => (
@@ -362,7 +297,7 @@ export default function ClosedRequests() {
                     <select
                     value={typeFilter} 
                     onChange={(e) => setTypeFilter(e.target.value)}
-                    className="text-white font-bold w-[140px] sm:w-[160px] text-xs h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg pl-3"
+              className="font-bold w-[140px] sm:w-[160px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
                     >
                         <option className="bg-[#161b22]">All Types</option>
                         <option className="bg-[#161b22]">Merged</option>
@@ -372,7 +307,7 @@ export default function ClosedRequests() {
                     <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)} 
-                    className="text-white font-bold w-[140px] sm:w-[160px] text-xs h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg pl-3"
+              className="font-bold w-[140px] sm:w-[160px] text-sm h-[38px] bg-[#161b22] border border-[#30363D] rounded-lg"
                     >
                         <option className="bg-[#161b22]">Closed Date</option>
                         <option className="bg-[#161b22]">Updated</option>
@@ -381,7 +316,7 @@ export default function ClosedRequests() {
                 </div>
             </div>
 
-            <div className="space-y-4 pb-10">
+            <div className="space-y-4">
   {filteredPRs.map((pr) => (
     <PullRequestCard key={pr.id} pr={pr} />
   ))}

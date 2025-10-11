@@ -36,7 +36,7 @@ export default function PullRequestCard({ pr }: { pr: PullRequest }) {
       className="block"
     >
       <div
-        className={`bg-[#161b22] mx-auto sm:mx-16 border border-[#30363D] rounded-lg p-4 hover:bg-[#30363D]/80 transition w-[500px] h-[180px] sm:w-auto sm:h-auto
+        className={`bg-[#161b22] mx-auto sm:mx-16 border border-[#30363D] rounded-lg p-4 hover:bg-[#30363D]/80 transition h-[180px] sm:w-auto sm:h-auto
         ${cn(
           pr.status === "Unapproved" && "border-l-2 border-l-amber-600",
           pr.status === "Pending approvals" && "border-l-2 border-l-yellow-600",
