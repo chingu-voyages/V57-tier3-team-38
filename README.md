@@ -18,59 +18,7 @@ If you are a developer and want to run this project locally:
    cd project-pr-team38
    ```
 
-## Our Team
-
-Everyone on your team should add their name along with a link to their GitHub
-& optionally their LinkedIn profiles below. Do this in Sprint #1 to validate
-your repo access and to practice PR'ing with your team *before* you start
-coding!
-
-- Eoin McDonnell: [GitHub](https://github.com/oldmcdonnell) / [LinkedIn](https://www.linkedin.com/in/mcdonnell-eoin)
-- Marissa Lamothe: [GitHub](https://github.com/msrissaxox) / [LinkedIn](https://www.linkedin.com/in/marissalamothe/)
-- Spandan Mahat : [GitHub](https://github.com/spandanmahat00) / [LinkedIn](https://linkedin.com/in/spandan-mahat-078662266)
-- Trevor Topolski : [GitHub](https://github.com/Trevor-04) / [LinkedIn](https://linkedin.com/in/trevortopolski)
-
-- Adelola Abioye: [GitHub](https://github.com/Adel-abio) / [LinkedIn](https://www.linkedin.com/in/adelola-abioye/)
-
-## Overview
-
-Welcome, Chingus!
-
-Something all project teams seem to struggle with is getting their GitHub Pull Requests (PRs)
-reviewed in a timely manner. Few things hold up team progress more than having changes
-queued up waiting on other team members to review them.
-
-Wouldn't it be helpful if teams had a PR status board customized to their team to help them
-track not only PR's that are waiting review, but also PR's that have been completed? Yes, 
-GitHub provides this, but it is very basic and teams need all the information they can get.
-
-In this voyage, your team will design and build a web application, the _PR Status Board_,
-to track current PR's waiting review as well as the history of PR's completed by the team.
-
-Your objective is to create an application that will utilize GitHub's REST API to retrieve
-current and historical PR status for the PR's created on your team repos. We'll provide you
-with instructions on how to create a read-only API key so you will be able to access this 
-information, as well as [sample code](https://github.com/chingu-voyages/voyage-project-pr-status/tree/main/src) to demonstrate how to retrieve this data through GitHub's API.
-
-Since GitHub's API is _rate limited_ the first feature you implement must be to retrieve and
-save the data returned so you can replay it to test your app, without having to access it
-through the API while you are testing.
-
-The _PR Status Board_ will help you build new _soft skills_ and refine your current role-based skills. It will also let you build new skills and experience using AI - but, more on this
-below.
-
-## General Instructions
-
-This project is designed to be worked on by a team rather than an individual
-Chingu. This means you and your team will need to thoroughly read and
-understand the requirements and specifications below, **_and_** define and
-manage your project following the _Agile Methodology_ defined in the
-[Voyage Handbook](https://github.com/chingu-voyages/Handbook/blob/main/docs/guides/voyage/voyage.md#voyage-guide).
-
-As you create this project make sure it meets all of the requirements, but once
-you've reached your _Minimum Viable Project (MVP)_ state, start implementing the optional 
-features or get creative and extend it in ways we haven't envisioned. In other words, use
-the power of teamwork to make it distinctive and unique.
+2. **Install dependencies**
 
    ```bash
    npm install
